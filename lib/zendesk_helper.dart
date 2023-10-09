@@ -101,4 +101,10 @@ class Zendesk {
   Future<void> sendMessage(String message) async {
     await _channel.invokeMethod<void>('sendMessage', {'message': message});
   }
+  /// Registers FCM's token for the device
+  Future<void> registerPushToken(String pushToken) async {
+    await _channel.invokeMethod<void>('registerPushToken', {
+      'pushToken': pushToken,
+    });
+  }
 }

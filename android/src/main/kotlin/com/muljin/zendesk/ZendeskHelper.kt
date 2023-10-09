@@ -90,6 +90,10 @@ class ZendeskHelper : FlutterPlugin, MethodCallHandler, ActivityAware {
                     result.success(true)
                 }
 
+                "registerPushToken" -> {
+                    registerPushToken(call, result)
+                }
+
                 else -> {
                     result.notImplemented()
                 }
@@ -192,5 +196,23 @@ class ZendeskHelper : FlutterPlugin, MethodCallHandler, ActivityAware {
                 .withEngines(ChatEngine.engine())
                 .show(activity, chatConfiguration)
 
+    }
+
+    private fun registerPushToken(call: MethodCall, flutterResult: Result) {
+        val pushToken = call.argument<String>("pushToken")
+        if(pushToken == null) {
+            flutterResult.error("registerPushToken", "pushToken is required", null)
+            return
+        }
+
+        val pushProvider = Chat.INSTANCE.providers()?.pushNotificationsProvider()
+
+        if(pushProvider == null) {
+            flutterResult.error("registerPushToken", "pushProvider is null", null)
+            return
+        }
+
+        pushProvider.registerPushToken(pushToken)
+        flutterResult.success(true)
     }
 }
