@@ -5,7 +5,7 @@ buildscript {
     ext.kotlin_version = '1.8.22'
     repositories {
         google()
-        jcenter()
+        mavenCentral()
     }
 
     dependencies {
@@ -17,7 +17,7 @@ buildscript {
 rootProject.allprojects {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
         maven { url 'https://zendesk.jfrog.io/zendesk/repo' }
     }
 }
@@ -43,8 +43,8 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation group: 'com.zendesk', name: 'chat', version: '3.3.7'
-    implementation group: 'com.zendesk', name: 'messaging', version: '5.3.0'
-    implementation group: 'com.zendesk', name: 'chat-providers', version: '3.3.7'
+    implementation group: 'com.zendesk', name: 'chat', version: '3.4.0'
+    implementation group: 'com.zendesk', name: 'messaging', version: '5.4.0'
+    implementation group: 'com.zendesk', name: 'chat-providers', version: '3.4.0'
     implementation 'com.squareup.okhttp3:okhttp:4.10.0'
 }
