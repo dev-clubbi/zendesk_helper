@@ -26,13 +26,25 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 33
+    // Handle 'namespace' property for new Android Gradle plugin versions
+    if (project.hasProperty("android") && project.android.hasProperty("namespace")) {
+        namespace = "com.muljin.zendesk"
+    }
+    compileSdkVersion 34
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
     defaultConfig {
         minSdkVersion 21
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
     lintOptions {
         disable 'InvalidPackage'
